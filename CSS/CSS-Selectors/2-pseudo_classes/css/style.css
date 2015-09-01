@@ -1,0 +1,34 @@
+/* general styles------------------ */
+
+body {
+	font-family: 'Nunito', sans-serif;
+	color: #616161;
+	padding: 40px 0;
+}
+ul {
+	list-style: none;
+	width: 50%;
+	margin: auto;
+}
+li {
+	border-bottom: 1px dotted #40918c;
+	padding: 15px 10px;
+}
+
+
+/* Structural Pseudo-classes------------------ */
+
+li:first-child {
+	background: #52bab3;
+	color: #fff;
+}
+li:last-child {
+	border:none;
+}
+span:only-child {
+	color: #52bab3;
+	font-size: 1.5em;
+}
+:empty {
+	background-color: #3f9e63;
+}

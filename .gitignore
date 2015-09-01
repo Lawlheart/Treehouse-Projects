@@ -1,0 +1,11 @@
+#Node Modules
+node_modules
+**/node_modules
+
+#Bower Packages
+bower_packages
+**/bower_packages
+
+#Microsoft Thumbs.db files
+Thumbs.db
+**/Thumbs.db

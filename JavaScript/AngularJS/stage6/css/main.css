@@ -1,0 +1,57 @@
+* {
+	box-sizing:border-box;
+}
+
+body {
+	background-color: #555;
+	color:#fff;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+.main, .debug {
+  margin:20px 2.5%;
+  padding:20px;
+  min-height:100%;
+  border-radius: 5px;
+}
+
+.main {
+	background-color: #222;
+  width:60%;
+  float: left;
+}
+
+.debug {
+	background-color: #070;
+	width:30%;
+  float: right;
+}
+
+.fields label {
+  display: block;
+  margin-bottom: 0.75em;
+  font-weight: bold;
+}
+
+.fields .question, .bar-chart .option {
+  margin-bottom: 0.75em;
+}
+
+.fields label input, .fields label select {
+  font-weight: normal;
+  margin-left: 1em;
+}
+
+.bar-chart .option .text {
+  margin-bottom: 0;
+}
+
+.bar-chart .option .bar {
+  display: block;
+  height: 2em;
+  color: white;
+  padding: 0.25em 0;
+  text-indent: 0.5em;
+}
