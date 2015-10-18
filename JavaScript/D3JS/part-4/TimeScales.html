@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Requests</title>
+ </head>
+ <body>
+<div id="viz-wrapper">
+</div>
+ </body>
+ <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ <script type="text/javascript">
+    // height and width of the svg
+    var height = 500,
+      width = 800,
+      padding = 50;
+
+    //create the view
+    var viz = d3.select('#viz-wrapper')
+      .append('svg')
+      .attr('id', 'viz')
+      .attr('height', height)
+      .attr('width', width)
+
+    // set x and y scales
+    var yScale = d3.scale.linear()
+      .range([height, 0])
+    var xScale = d3.time.scale()
+      .range([width, 0])
+
+    //set time variable up, '20150214' is data
+    var parseTime = d3.time.format('%Y%m%d');
+
+    //load csv file
+    d3.csv('climate_data.csv', function(data) {
+      //set up domain for y
+      yDomain = d3.extent(data, function(element) {
+        return parseInt(element.TMAX)
+      });
+      //set up domain for x using parseTime from time.format
+      xDomain = d3.extent(data, function(element) {
+        return parseTime.parse(element.DATE)
+      });
+
+      //assign domain variables using .domain() on xScale/yScale from d3.time.scale()
+      // total format for x: d3.scale.linear().range([RANGE]).domain([DOMAIN])
+      yScale.domain(yDomain);
+      //total format for y: d3.time.scale().range([RANGE]).domain([DOMAIN])
+      xScale.domain(xDomain);
+
+      //create data dots
+      dots = viz.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        
+
+
+      //set dots radius to 5, cx to parsed, scaled time, cy to scaled value. Style dots.
+      dots.attr('r', 5)
+        .attr('cx', function(d) {
+          date = parseTime.parse(d.DATE);
+          return xScale(date)
+        })
+        .attr('cy', function(d) {
+          return yScale(d.TMAX)
+        })
+        .style('stroke', '#00ffd2')
+        .style('fill', '#006bff')
+
+    });
+ </script>
+</html>

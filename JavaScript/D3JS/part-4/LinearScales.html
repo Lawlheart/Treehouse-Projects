@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Requests</title>
+ </head>
+ <body>
+<div id="viz-wrapper">
+</div>
+ </body>
+ <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ <script type="text/javascript">
+    // height and width of the svg
+    var height = 800,
+      width = 500;
+
+    var padding = 50;
+
+    //create svg element, give it height and width
+    var viz = d3.select("#viz-wrapper")
+      .append('svg')
+      .attr('id', 'viz')
+      .attr('height', height)
+      .attr('width', width);
+
+    //set vertical scale to [800, 0]
+    var yScale = d3.scale.linear()
+      .range([height, 0]);
+
+    d3.csv('climate_data.csv', function(data) {
+      // set up minimum and maximum values for x and y scales by comparing each MAX and MIN
+      // yMax = d3.max(data, function(element) {
+      //   return parseInt(element.TMAX)
+      // });
+
+      // yMin = d3.min(data, function(element) {
+      //   return parseInt(element.TMAX)
+      // });
+
+      // d3.extent is d3.max and d3.min all in one
+      yDomain = d3.extent(data, function(element) {
+        return parseInt(element.TMAX)
+      });
+
+      //sets .domain for the previously set .scale.linear variable
+      yScale.domain(yDomain);
+      debugger;
+
+      //create dots, add data to dots, 
+      dots = viz.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle');
+
+      //set dot radius to 5px, cx to random, and cy to relevant values based on TMAX.
+      dots.attr('r', 5)
+        .attr('cx', function(d) {
+          return Math.max(0 + padding, Math.random() * width - padding)
+        })
+        .attr('cy', function(d) {
+          return yScale(d.TMAX)
+        })
+        .style('stroke', '#00ffd2')
+        .style('fill', '#006bff');
+      debugger;
+    });
+ </script>
+</html>

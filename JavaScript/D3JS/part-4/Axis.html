@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Axis</title>
+ </head>
+ <body>
+<div id="viz-wrapper">
+</div>
+ <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ <script type="text/javascript">
+    // height and width of the svg, padding
+    var height = 500,
+      width = 800,
+      padding = 50;
+
+    //set up the svg canvas. add padding to canvas using transform: translate(padding, padding)
+    var viz = d3.select('#viz-wrapper')
+      .append('svg')
+      .attr('height', height + padding * 2)
+      .attr('width', width + padding * 2)
+      .append('g')
+      .attr('id', 'viz')
+      .attr('transform', 'translate(' + padding + ',' + padding + ')');
+
+
+    //set x and y scales
+    var xScale = d3.time.scale()
+      .range([width, 0])
+    var yScale = d3.scale.linear()
+      .range([height, 0])
+
+    // set up x and y axes
+    var xAxis = d3.svg.axis().scale(xScale)
+      .orient("bottom")
+      .ticks(8)
+    var yAxis = d3.svg.axis().scale(yScale)
+      .orient("left")
+      .ticks(20)
+
+    //set ParseTime
+    var parseTime = d3.time.format('%Y%m%d');
+
+    //AJAX request to pull csv data
+    d3.csv('climate_data.csv', function(data) {
+
+      //set up domains for x and y
+      xDomain = d3.extent(data, function(d) {
+        var date = parseTime.parse(d.DATE);
+        return date
+      });
+      yDomain = d3.extent(data, function(d) {
+        return parseInt(d.TMAX)
+      });
+
+      //set xScale and yScale .domain() to domains
+      xScale.domain(xDomain);
+      yScale.domain(yDomain);
+
+      //add the x axis and y axis
+      viz.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
+      viz.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis);
+
+
+      //create the data dots
+      dots = viz.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+
+      // set the positions and styles of the dots
+      dots.attr('r', 5)
+        .attr('cx', function(d) {
+          date = parseTime.parse(d.DATE);
+          return xScale(date)
+        })
+        .attr('cy', function(d) {
+          return yScale(d.TMAX)
+        })
+        .style('stroke', '#00ffd2')
+        .style('fill', '#006bff');
+   });
+ </script>
+ </body>
+</html>

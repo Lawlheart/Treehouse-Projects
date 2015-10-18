@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Requests</title>
+ </head>
+ <body>
+<div id="viz-wrapper">
+</div>
+ </body>
+ <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ <script type="text/javascript">
+    // height and width of the svg
+    var height = 500,
+         width = 800;
+
+    var padding = 50;
+
+    //creating the svg element
+    var viz = d3.select("#viz-wrapper")
+                .append('svg')
+                .attr('id', 'viz')
+                .attr('height', height)
+                .attr('width', width);
+
+    //loading csv
+    d3.csv('climate_data.csv', function(data) {
+        //making dots with bound data
+        dots = viz.selectAll('circle')
+                  .data(data)
+                  .enter()
+                  .append('circle');
+        //setting r value of dots to relative values
+        dots.attr('r', function(d, i) {
+          // debugger;
+          return Math.abs(d.TMAX) / 10})
+          //set the cx and cy values to random positions
+          .attr('cx', function(d) {return Math.max(0 + padding, Math.random() * width - padding)})
+          .attr('cy', function(d) {return Math.max(0 + padding, Math.random() * height - padding)})
+            //set the stroke color to red
+            .style('stroke', 'red')
+            //set the fill color to be different depending on year
+            .style('fill', function(d) {
+                year = d.DATE.charAt(3)
+                if (year === "3") {
+                    return "blue"
+                }
+                else {
+                    return "green"
+                }
+            });
+
+     });
+ </script>
+</html>
