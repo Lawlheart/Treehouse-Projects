@@ -2,7 +2,7 @@
 <html>
  <head>
   <meta charset="UTF-8">
-  <title>Axis</title>
+  <title>Selections</title>
     <style>
     .axis line,
     .axis path {
@@ -25,6 +25,8 @@
 
     var padding = 50;
 
+    var defaultCircleRadius = 2;
+
     var viz = d3.select("#viz-wrapper")
                     .append('svg')
                     .attr('height', height + padding * 2 )
@@ -40,16 +42,26 @@
     var xScale = d3.time.scale()
                           .range([0, width]);
 
-    // Set up the x axis
+    var rScale = d3.scale.linear()
+                          .range([5, 50]);                      
+
     var xAxis = d3.svg.axis().scale(xScale)
                               .orient("bottom")
                               .ticks(20);
-    // Set up the y axis 
+
     var yAxis = d3.svg.axis().scale(yScale)
                               .orient("left")
                               .ticks(20);
 
     var parseTime = d3.time.format("%Y%m%d");
+
+    var solveForR = function(TMAX) {
+        // area of a circle
+        // Area = Pi * r * r
+        Area = Math.abs( TMAX );
+        r = Math.sqrt( Area / Math.PI);
+        return r
+      };
 
     d3.csv('climate_data.csv', function(data) {
       yDomain = d3.extent(data, function(element){
@@ -68,7 +80,12 @@
         return time
       });
       
+      rDomain = d3.extent(data, function(element){
+        return solveForR(parseInt(element.TMAX));
+      });
+
       yScale.domain(yDomain);
+      rScale.domain(rDomain);
       xScale.domain([xMin, xMax]);
 
       // Add the X Axis
@@ -89,21 +106,49 @@
           .attr("class", "y axis")
           .call(yAxis);
 
-      dots = viz.selectAll('circle')
+      dots = viz.selectAll('g.dots')
                    .data(data)
                    .enter()
-                  .append('circle');
+                  .append('g')
+                  .attr('class', 'dots');
 
-      dots.attr('r', 5)
-          .attr('cx', function(d) {
+      dots.attr('transform', function(d) {
+            // get the x position
             date = parseTime.parse(d.DATE);
-            return xScale(date)
-          })
-          .attr('cy', function(d) {
-            return yScale(d.TMAX)
+            x = xScale(date)
+            // get the y position
+            y = yScale(d.TMAX)
+            return 'translate(' + x + ',' + y + ')'
           })
           .style('stroke', '#00ffd2')
           .style('fill', '#006bff');
+
+      dots.append('circle')
+          .attr('r', defaultCircleRadius);
+
+      dots.append('text')
+          .text(function(d) {
+            return d.TMAX
+            })
+          .style('display', 'none');
+
+      dots.on("mouseenter", function(d, i) {
+        dot = d3.select(this);
+        radius = solveForR( parseInt(d.TMAX) ) 
+        dot.select('text')
+           .style('display', 'block');
+        dot.select('circle')
+            .attr('r', rScale( radius ));
+      });
+
+      dots.on("mouseleave", function(d, i) {
+        dot = d3.select(this); 
+        dot.select('text')
+           .style('display', 'none');
+        dot.select('circle')
+           .attr('r', defaultCircleRadius);
+      });
+
     });
  </script>
  </body>
