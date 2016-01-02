@@ -1,0 +1,26 @@
+/* Sass Notes
+ - Using @import, you can separate your project logically
+ - Typical Layout from main.scss might be like so:
+				@import "_reset.scss";
+				@import "bourbon/_bourbon.scss";
+				@import "_variables.scss";
+				@import "_mixins.scss";
+				@import "_globals.scss";
+				@import "pages/home.scss";
+				@import "pages/about.scss";
+
+
+*/
+
+
+@import "../_reset.scss";
+
+// Defining
+@import "_variables.scss";
+@import "_mixins.scss";
+
+// Global Styles
+@import "_globals.scss";
+
+// Page Specifics
+@import "pages/_about_us.scss"

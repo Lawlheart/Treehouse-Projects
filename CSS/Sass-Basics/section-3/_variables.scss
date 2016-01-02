@@ -1,0 +1,17 @@
+/* Sass Notes
+ - Desaturate can soften bright colors like so:
+				$background: desaturate(#187, 30%);
+ - Mix can combine colors like so:
+ 				$text-color: mix(#F00, #0F0);
+ - Lighten and Darken can change the shade of colors like so:
+				$highlighted-text: lighten($text-color, 20%);
+				$shadowed-text: darken($text-color, 20%);
+*/
+
+// Colors
+$background: desaturate(#187, 30%);
+$text-color: mix(#369, #187);
+$highlighted-text-color: lighten($text-color, 20%); 
+
+
+// Sizes

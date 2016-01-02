@@ -1,0 +1,36 @@
+/* Sass Notes
+ - You can create custom inheritance with @extend like so:
+ 			.bar {
+				width: 100%;
+				height: 40px; }
+ 			.navbar {
+				@extend .bar; }
+ - To make artificial tags just for extend, use % like so:
+ 			%green {
+				background-color: #242;
+				color: #fff; 
+				border-color: #353; }
+			.navbar {
+				@extend %green; }
+*/
+
+
+
+%bar { 
+	height: 14px;
+	font-size: 10px;
+	> div {
+		float: left;
+		clear: none;
+	}
+}
+
+.menu {
+	@extend %bar;
+	background: #345;
+}
+
+.nav {
+	@extend %bar;
+
+}

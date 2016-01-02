@@ -1,0 +1,39 @@
+/* Sass Notes
+ - Sass can use nesting, with higher levels acting as parents of lower levels
+ - using >, you can specify a direct relation
+ - with &, you can include rules relative to the current nesting. e.g., "&:hover" nested in "a" returns "a:hover", "main &" nested in "div" returns "main div"
+
+*/
+body {
+	background-color: #222;
+}
+
+.blog {
+	> h1 {
+		color: red;
+		border: 1px solid red;
+	}
+	.entry {
+		h1 {
+			font-size: 20px;
+			color: blue;
+		}
+		p {
+			font-size: 12px;
+			margin: 20px;
+
+			html.csscolumns & {
+				column-count: 2;
+				column-gap: 10px;
+				margin: 10px;
+			}
+		}
+		a {
+			color: red;
+			&:hover {
+				color: blue;
+			}
+		}
+	}
+}
+

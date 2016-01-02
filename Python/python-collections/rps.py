@@ -1,4 +1,6 @@
 import random
+import sys
+
 moves = ['rock', 'paper', 'scissors']
 
 def game():
@@ -16,11 +18,13 @@ def game():
 	win = compare(player_move, computer_move)
 	if win:
 		print("win!")
+		sys.exit()
 	else:
 		print("lose!")
-	
+		sys.exit()
 
 def compare(player_move, computer_move):
+	player_win = False
 	if player_move == computer_move:
 		print('Tie game')
 		game()
@@ -37,9 +41,9 @@ def compare(player_move, computer_move):
 				player_win = True
 		elif player_move == 'scissors':
 			if computer_move == 'rock':
-				player_win == False
-			elif computer_move == 'paper':
 				player_win == True
+			elif computer_move == 'paper':
+				player_win == False
 		return player_win
 
 

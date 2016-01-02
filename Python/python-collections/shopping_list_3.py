@@ -1,8 +1,7 @@
 shopping_list = []
 
 def show_help():
-	print('\nSeparate each item with a comma.')
-	print('\nEnter DONE to quit, SHOW to show the list, and HELP to get this message')
+	print('Enter DONE to quit, SHOW to show the list, REMOVE to delete an item, and HELP to get this message\n')
 
 def show_list():
 	count = 1
@@ -15,7 +14,7 @@ def remove_item(idx):
 	item = shopping_list.pop(index)
 	print('Removed {}'.format(item))
 
-print('Give me a list of things you want to shop for.')
+print('\nGive me a list of things you want to shop for. Separate each item with a comma.')
 show_help()
 
 while True:

@@ -1,0 +1,41 @@
+/* Sass Notes
+ - You can nest media queries as expected, like so:
+ 				.content {
+					.sidebar {
+						color: red;
+						@media screen and (max-width: 480px) {
+							background-color: purple; } } }
+*/
+
+body {
+	font-family: Helvetica;
+}
+
+.content {
+	.sidebar {
+	  background: #999;
+	  color: white;
+	  padding: 5px;
+	  float: left;
+	  width: 100px;
+	  @media (max-width: 480px) {
+			width: 95%; }
+
+	  a {
+	  	display: block;
+	  	color: white;
+	  	@media (max-width: 480px) {
+				display: inline; }
+	  }
+
+	}
+	.main {
+		padding: 5px;
+		background: #bbb;
+		display: inline-block;
+		width: 60%;
+		@media (max-width: 480px) {
+			width: 95%;
+		}
+	}
+}

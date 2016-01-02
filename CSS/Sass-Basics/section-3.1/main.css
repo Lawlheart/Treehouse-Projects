@@ -1,0 +1,24 @@
+div {
+  height: 100px;
+  width: 255px;
+  border: 1px solid black; }
+
+.color {
+  background: green; }
+
+.red, .blue, .green {
+  float: left; }
+
+.red {
+  background: red;
+  width: 0px; }
+
+.blue {
+  background: blue;
+  width: 0px; }
+
+.green {
+  background: green;
+  width: 128px; }
+
+/*# sourceMappingURL=main.css.map */

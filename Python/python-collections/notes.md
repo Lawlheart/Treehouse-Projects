@@ -24,3 +24,7 @@ List.remove('thing')
 
 item_i = List.pop(i)
 	removes the item at index i and returns it to item_i. using the method without i pulls the last item in the List
+
+type(item) is bool
+	checks if the item is a boolean, also for string, integer, etc
+
