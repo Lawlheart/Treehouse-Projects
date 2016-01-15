@@ -10,3 +10,5 @@ type(new_thing)
 from filename import Thing    (on the command line)
 	imports the class Thing from filename.py
 
+importlib.reload(modulename)
+	reloads a module!

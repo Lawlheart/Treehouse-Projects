@@ -1,4 +1,4 @@
-Sass Notes
+# Sass Notes
 
   - Sass can use nesting, with higher levels acting as parents of lower levels
   - using >, you can specify a direct relation
@@ -96,3 +96,11 @@ Sass Notes
 							background: url("images/#{$name}/#{$member}.jpg"); } } }
 				(AND YOU CALL IT WITH)
 				@include band(radiohead, thom johnny colin phil);
+  - You can also declare default values like so:
+				@mixin box($size: 10px, $color: black, $display: block) {
+					height: $size;
+					width: $size;
+					background: $color;
+					display: $display; }
+	- And call those values in any order by declaring them in the call:
+				@include box($color: red, $display: inline, $size: 20px);
