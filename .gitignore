@@ -9,3 +9,10 @@ bower_packages
 #Microsoft Thumbs.db files
 Thumbs.db
 **/Thumbs.db
+
+#Virtualenv
+**/venv
+
+#python cache
+**/__pycache__
+
