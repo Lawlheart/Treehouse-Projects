@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ performer }}{% endblock %}
+
+{% block content %}
+  <h2>{{ performer }}</h2>
+  {% for song in performer.song_set.all %}
+    <h3><a href="{% url 'songs:detail' pk=song.pk %}">{{song.title}} by {{song.artist}}: {{song.length}} seconds</a></h3>
+  {% endfor %}
+{% endblock %}
