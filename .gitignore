@@ -18,3 +18,7 @@ Thumbs.db
 
 #Mac generated file
 **/.DS_Store
+
+#sublime project files
+**/*.sublime-project
+**/*.sublime-workspace
