@@ -22,7 +22,7 @@ from . import views
 urlpatterns = [
     url(r'^courses/', include('courses.urls', namespace='courses')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index),
+    url(r'^$', views.index, name='home'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
