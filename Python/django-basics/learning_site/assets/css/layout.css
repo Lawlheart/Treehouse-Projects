@@ -1,6 +1,4 @@
 html {
-  background-color: #222;
-  color:#fff;
   box-sizing: border-box; }
 
 *, *::after, *::before {
@@ -82,18 +80,18 @@ html {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  background-color: #444;
+  background-color: #f6f6f6;
   border-radius: 3px;
-  border: 1px solid #000;
-  box-shadow: 0 2px 4px #333;
+  border: 1px solid gainsboro;
+  box-shadow: 0 2px 4px #e6e6e6;
   margin: 0 1em 1.5em 1em;
   position: relative; }
   .card header {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    background-color: #444;
-    border-bottom: 1px solid #000;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid gainsboro;
     border-radius: 3px 3px 0 0;
     font-weight: bold;
     line-height: 1.5em;
