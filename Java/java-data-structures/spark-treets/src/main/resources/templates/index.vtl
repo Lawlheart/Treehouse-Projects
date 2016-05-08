@@ -1,0 +1,18 @@
+<h1 class="text-center">Treehouse Tweets (Treets!)</h1>
+<h4 class="text-center">Hashtags: 
+  #foreach ($hashtag in $hashtags)
+    $hashtag <span class="badge">$tagCounts.get($hashtag)</span> 
+  #end
+</h4>
+<h4 class="text-center">Mentions: 
+  #foreach ($mention in $mentions) 
+    $mention <span class="badge">$mentionCounts.get($mention)</span>
+  #end
+</h4>
+#foreach ($treet in $treets)
+  <div class="well treet">
+    <a href="$treet.getAuthor()">
+      <h3>$treet</h3>
+    </a>
+  </div>
+#end

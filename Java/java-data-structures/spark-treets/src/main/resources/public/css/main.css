@@ -1,0 +1,17 @@
+body {
+  background-color: #222;
+  color: #fff;
+}
+.well {
+  color:#4B8D4F;
+  background-color: #333;
+  border-color: #272727;
+}
+
+a {
+  color:#4B8D4F;
+}
+a:hover {
+  color:#4B8D4F;
+  text-decoration: none;
+}
