@@ -60,3 +60,9 @@ Thumbs.db
 ########
 build/
 .gradle/
+
+# IntelliJ Files #
+##################
+**/.idea
+gradlew
+gradlew.bat
