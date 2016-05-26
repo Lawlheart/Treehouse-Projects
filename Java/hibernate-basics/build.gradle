@@ -1,0 +1,12 @@
+group 'com.lawlietblack'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
+}
