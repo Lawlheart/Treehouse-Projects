@@ -50,12 +50,12 @@ public class Main {
     }
 
     public static void save(Contact contact, Statement statement) throws SQLException {
-        String sql = "INSERT INTO contacts (firstname, lastname, email, phone) VALUES ('%s', '%s', '%s', %d)";
+        String sql = "INSERT INTO contacts (firstname, lastname, email, phone) VALUES ('%s', '%s', '%s', " +
+                contact.getPhone() + ")";
         sql = String.format(sql,
                 contact.getFirstName(),
                 contact.getLastName(),
-                contact.getEmail(),
-                contact.getPhone());
+                contact.getEmail());
         statement.executeUpdate(sql);
     }
 }
