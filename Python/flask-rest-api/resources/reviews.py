@@ -65,11 +65,18 @@ class Review(Resource):
     def get(self, id):
         return add_course(review_or_404(id))
 
+    @marshal_with(review_fields)
     def put(self, id):
-        return jsonify({'course': 1, 'rating': 5})
+        args = self.reqparse.parse_args()
+        query = models.Review.update(**args).where(models.Review.id==id)
+        query.execute()
+        return (add_course(models.Review.get(models.Review.id==id)), 200,
+                {'Location': url_for('resources.reviews.review')})
 
     def delete(self, id):
-        return jsonify({'course': 1, 'rating': 5})
+        query = models.Review.delete().where(models.Review.id==id)
+        query.execute()
+        return ('', 204, {'Location': url_for('resources.reviews.review')})
 
 reviews_api = Blueprint('resources.reviews', __name__)
 api = Api(reviews_api)
